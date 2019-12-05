@@ -21,9 +21,9 @@ function UserCard(props) {
               src={
                 props.image === null
                   ? props.gender === "Male"
-                    ? "../assets/images/profile_male.png"
-                    : "../assets/images/profile_female.png"
-                  : "../images/" + props.image
+                    ? "/assets/images/profile_male.png"
+                    : "/assets/images/profile_female.png"
+                  : "/images/" + props.image
               }
             />
           </div>
