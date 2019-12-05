@@ -8,8 +8,8 @@ function SeekerEventCard(props) {
           class="card-img"
           src={
             props.image === null
-              ? "../public/assets/images/placeholder_event.jpg"
-              : "../public/images/" + props.image
+              ? "../assets/images/placeholder_event.jpg"
+              : "../images/" + props.image
           }
           // src={"../images/" + props.image}
           alt="Card image"

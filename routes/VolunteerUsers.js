@@ -1,16 +1,16 @@
 const express = require('express')
-const volunteerUsers = express.Router()
+const users = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const db = require("../models/index.js")
-volunteerUsers.use(cors())
+const db = require("../models")
+users.use(cors())
 require('cookie-parser')
 
 process.env.SECRET_KEY = 'secret'
 
-volunteerUsers.post('/register', (req, res) => {
-  console.log("Volunteer volunteerUsers hit")
+users.post('/register', (req, res) => {
+  console.log("Volunteer Users hit")
   const today = new Date()
   const userData = {
     first_name: req.body.first_name,
@@ -53,7 +53,7 @@ volunteerUsers.post('/register', (req, res) => {
 
 });
 
-volunteerUsers.get("/data", function (req, res) {
+users.get("/data", function (req, res) {
   const userToken = req.cookies.userToken;
   var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
 
@@ -70,7 +70,7 @@ volunteerUsers.get("/data", function (req, res) {
     })
 })
 
-volunteerUsers.put("/data", function (req, res) {
+users.put("/data", function (req, res) {
   const userToken = req.cookies.userToken;
   var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
 
@@ -94,7 +94,7 @@ volunteerUsers.put("/data", function (req, res) {
     })
 })
 
-volunteerUsers.get('/events', (req, res) => {
+users.get('/events', (req, res) => {
   const userToken = req.cookies.userToken;
   var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
 
@@ -117,12 +117,12 @@ volunteerUsers.get('/events', (req, res) => {
     })
 })
 
-volunteerUsers.get('/all', (req, res) => {
+users.get('/all', (req, res) => {
   // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
   db.User.findAll()
     .then(user => {
-      console.log('volunteerUsersJS: ', user);
+      console.log('USERSJS: ', user);
       if (user) {
         res.json(user)
       } else {
@@ -134,7 +134,7 @@ volunteerUsers.get('/all', (req, res) => {
     })
 })
 
-volunteerUsers.get('/events', (req, res) => {
+users.get('/events', (req, res) => {
   // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
   db.Event.findAll()
@@ -152,4 +152,4 @@ volunteerUsers.get('/events', (req, res) => {
 })
 
 
-module.exports = volunteerUsers
+module.exports = users

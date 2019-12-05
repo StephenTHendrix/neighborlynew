@@ -6,9 +6,9 @@ module.exports = function (app) {
     app.get("/api/userevents/:id", (req, res) => {
         db.sequelize.query(
             // eu.EventID, u.first_name, u.last_name,
-            `Select Users.first_name, Events.* from Events
-            left join Event_Users on Event_Users.EventID = Events.id
-            left join Users on Event_Users.UserID = Users.id WHERE Users.id = ? order by date asc`,
+            `Select users.first_name, events.* from events
+            left join event_users on event_users.EventID = events.id
+            left join users on event_users.UserID = users.id WHERE users.id = ? order by date asc`,
             {
                 replacements: [req.params.id], type: sequelize.QueryTypes.SELECT
             }
@@ -80,9 +80,9 @@ module.exports = function (app) {
 
     app.get("/api/seekerEvent/:id/:seekerID", (req, res) => {
         db.sequelize.query(
-            `select Users.first_name, Users.last_name, Users.email from Events
-            left join Event_Users on Event_Users.EventID = Events.id
-            left join Users on Event_Users.UserID = Users.id where Events.id = ? and Events.UserId = ?`,
+            `select users.first_name, users.last_name, users.email from events
+            left join event_users on event_users.EventID = events.id
+            left join users on event_users.UserID = users.id where events.id = ? and events.UserId = ?`,
             {
                 replacements: [req.params.id, req.params.seekerID],
                 type: sequelize.QueryTypes.SELECT
