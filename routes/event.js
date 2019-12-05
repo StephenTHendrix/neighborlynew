@@ -1,7 +1,6 @@
 const db = require('../models');
 var sequelize = require("sequelize");
 
-
 module.exports = function (app) {
     // join Events, Event_User, and User table together
     app.get("/api/userevents/:id", (req, res) => {
