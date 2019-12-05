@@ -3,7 +3,7 @@ const seekerUsers = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const db = require("../models/Index")
+const db = require("../models/index.js")
 seekerUsers.use(cors())
 
 process.env.SECRET_KEY = 'secret'

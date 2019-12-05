@@ -31,7 +31,7 @@ app.use('/users/', Users)
 app.use('/event/', Events)
 
 
-const db = require("./models/Index");
+const db = require("./models/index.js");
 require("./routes/event.js")(app);
 
 if (process.env.NODE_ENV === 'production') {

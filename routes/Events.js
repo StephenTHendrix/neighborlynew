@@ -2,7 +2,7 @@ const express = require('express')
 const events = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
-const db = require("../models/Index")
+const db = require("../models/index.js")
 events.use(cors())
 require('cookie-parser')
 

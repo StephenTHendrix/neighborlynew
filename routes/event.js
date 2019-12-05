@@ -1,4 +1,4 @@
-const db = require('../models/Index');
+const db = require('../models/index.js');
 var sequelize = require("sequelize");
 
 module.exports = function (app) {
