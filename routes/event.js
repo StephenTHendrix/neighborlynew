@@ -80,9 +80,9 @@ module.exports = function (app) {
 
     app.get("/api/seekerEvent/:id/:seekerID", (req, res) => {
         db.sequelize.query(
-            `select users.first_name, users.last_name, users.email from events
-            left join Event_Users on Event_Users.EventID = events.id
-            left join users on Event_Users.UserID = users.id where events.id = ? and events.UserId = ?`,
+            `select Users.first_name, Users.last_name, Users.email from Events
+            left join Event_Users on Event_Users.EventID = Events.id
+            left join Users on Event_Users.UserID = Users.id where Events.id = ? and Events.UserId = ?`,
             {
                 replacements: [req.params.id, req.params.seekerID],
                 type: sequelize.QueryTypes.SELECT
