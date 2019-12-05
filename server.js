@@ -20,7 +20,7 @@ app.use(
 )
 app.use(cookieParser())
 
-var VolunteerUsers = require('./routes/volunteerUsers')
+var VolunteerUsers = require('../routes/volunteerUsers')
 var SeekerUsers = require('./routes/SeekerUsers')
 var Users = require('./routes/Users')
 var Events = require('./routes/Events')
