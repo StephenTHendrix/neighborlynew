@@ -20,7 +20,7 @@ app.use(
 )
 app.use(cookieParser())
 
-var VolunteerUsers = require('./routes/VolunteerUsers')
+var VolunteerUsers = require('./routes/volunteerUsers')
 var SeekerUsers = require('./routes/SeekerUsers')
 var Users = require('./routes/Users')
 var Events = require('./routes/Events')
@@ -31,7 +31,7 @@ app.use('/users/', Users)
 app.use('/event/', Events)
 
 
-const db = require("./models");
+const db = require("./models/Index");
 require("./routes/event.js")(app);
 
 if (process.env.NODE_ENV === 'production') {
