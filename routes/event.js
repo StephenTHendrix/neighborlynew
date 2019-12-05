@@ -78,6 +78,7 @@ module.exports = function (app) {
         })
     })
 
+    
     app.get("/api/seekerEvent/:id/:seekerID", (req, res) => {
         db.sequelize.query(
             `select users.first_name, users.last_name, users.email from Events
