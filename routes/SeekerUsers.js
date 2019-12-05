@@ -1,15 +1,15 @@
 const express = require('express')
-const users = express.Router()
+const seekerUsers = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require("../models/Index")
-users.use(cors())
+seekerUsers.use(cors())
 
 process.env.SECRET_KEY = 'secret'
 
-users.post('/register', (req, res) => {
-    console.log("Seeker Users hit")
+seekerUsers.post('/register', (req, res) => {
+    console.log("Seeker seekerUsers hit")
     const today = new Date()
     const userData = {
         first_name: req.body.first_name,
@@ -56,7 +56,7 @@ users.post('/register', (req, res) => {
 
 });
 
-users.get("/data", function (req, res) {
+seekerUsers.get("/data", function (req, res) {
     const userToken = req.cookies.userToken;
     var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
 
@@ -73,7 +73,7 @@ users.get("/data", function (req, res) {
         })
 })
 
-users.put("/data", function (req, res) {
+seekerUsers.put("/data", function (req, res) {
     const userToken = req.cookies.userToken;
     var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
 
@@ -99,7 +99,7 @@ users.put("/data", function (req, res) {
         })
 })
 
-users.get('/events', (req, res) => {
+seekerUsers.get('/events', (req, res) => {
     const userToken = req.cookies.userToken;
     var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
     db.Event.findAll({
@@ -119,11 +119,11 @@ users.get('/events', (req, res) => {
         })
 })
 
-users.get('/all', (req, res) => {
+seekerUsers.get('/all', (req, res) => {
 
     db.User.findAll()
         .then(user => {
-            console.log('USERSJS: ', user);
+            console.log('seekerUsersJS: ', user);
             if (user) {
                 res.json(user)
             } else {
@@ -135,4 +135,4 @@ users.get('/all', (req, res) => {
         })
 })
 
-module.exports = users
+module.exports = seekerUsers
