@@ -34,9 +34,9 @@ app.use('/event/', Events)
 const db = require("./models");
 require("./routes/event.js")(app);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+// }
 
 
 app.post("/api", upload.single("./client/public/images", 12), function (req, res) {
