@@ -34,8 +34,9 @@ app.use('/event/', Events)
 const db = require("./models");
 require("./routes/event.js")(app);
 
-app.use(express.static('client/public'));
-
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 
 app.post("/api", upload.single("./client/public/images", 12), function (req, res) {
@@ -57,7 +58,7 @@ app.post("/api", upload.single("./client/public/images", 12), function (req, res
 })
 
 app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 db.sequelize.sync().then(() => {
