@@ -20,7 +20,7 @@ app.use(
 )
 app.use(cookieParser())
 
-var VolunteerUsers = require('/routes/volunteerUsers')
+var VolunteerUsers = require('/routes/VolunteerUsers')
 var SeekerUsers = require('/routes/SeekerUsers')
 var Users = require('/routes/Users')
 var Events = require('/routes/Events')
@@ -34,9 +34,9 @@ app.use('/event/', Events)
 const db = require("./models/Index");
 require("./routes/event.js")(app);
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 
 app.post("/api", upload.single("./client/public/images", 12), function (req, res) {
