@@ -8,8 +8,8 @@ function SearchEventCard(props) {
           class="card-img"
           src={
             props.image === null
-              ? "../assets/images/placeholder_event.jpg"
-              : "../images/" + props.image
+              ? "../public/images/placeholder_event.jpg"
+              : "../public/images/" + props.image
           }
           alt="Card image"
         />

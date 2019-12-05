@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode'
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
-let profileImage = "../assets/images/profile_male.png";
+let profileImage = "../public/assets/images/profile_male.png";
         
 
 
