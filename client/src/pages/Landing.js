@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
 class Landing extends Component {
+
+
+  componentDidMount() {
+    var scripts = document.getElementsByTagName("script");
+    console.log(scripts[5].src)
+  }
+
   render() {
     return (
       <div>
