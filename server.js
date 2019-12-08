@@ -31,6 +31,7 @@ app.use('/users/', Users)
 app.use('/event/', Events)
 
 
+
 const db = require("./models");
 require("./routes/event.js")(app);
 
