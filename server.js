@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.post("/api", upload.single("./images", 12), function (req, res) {
+app.post("/api", upload.single("../public/images", 12), function (req, res) {
   const originalName = req.file.originalname;
   const newArr = originalName.split(".");
   const fileExt = newArr[newArr.length - 1];

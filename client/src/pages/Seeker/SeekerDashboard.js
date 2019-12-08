@@ -301,7 +301,7 @@ class SeekerDashboard extends Component {
 
                 <FilePond ref={ref => this.pond = ref}
                   files={this.state.files}
-                  name="./images"
+                  name="../public/images"
                   allowMultiple={false}
                   maxFiles={1}
                   server="/api"
