@@ -8,7 +8,7 @@ module.exports = function (app) {
             // eu.EventID, u.first_name, u.last_name,
             `Select Users.first_name, Events.* from Events
             left join Event_Users on Event_Users.EventID = Events.id
-            left join Users on Event_Users.UserID = Users.id WHERE Users.id = ? order by date asc`,
+            left join users on Event_Users.UserID = Users.id WHERE Users.id = ? order by date asc`,
             {
                 replacements: [req.params.id], type: sequelize.QueryTypes.SELECT
             }
