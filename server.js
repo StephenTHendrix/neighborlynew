@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 5000
 const multer = require("multer");
-const upload = multer({ dest: "client/build/images" })
+const upload = multer({ dest: "client/public/images" })
 const fs = require('fs');
 
 require('dotenv').config();
@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.post("/api", upload.single("./client/build/images", 12), function (req, res) {
+app.post("/api", upload.single("./client/public/images", 12), function (req, res) {
   const originalName = req.file.originalname;
   const newArr = originalName.split(".");
   const fileExt = newArr[newArr.length - 1];
