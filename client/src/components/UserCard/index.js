@@ -23,7 +23,7 @@ function UserCard(props) {
                   ? props.gender === "Male"
                     ? "../assets/images/profile_male.png"
                     : "../assets/images/profile_female.png"
-                  : "../images/" + props.image
+                  : "../client/public/images/" + props.image
               }
             />
           </div>
