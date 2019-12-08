@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 5000
 const multer = require("multer");
-const upload = multer({ dest: "/images" })
+const upload = multer({ dest: "../public/images" })
 const fs = require('fs');
 
 require('dotenv').config();
