@@ -31,7 +31,6 @@ app.use('/users/', Users)
 app.use('/event/', Events)
 
 
-
 const db = require("./models");
 require("./routes/event.js")(app);
 
@@ -40,21 +39,19 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.post("/api", upload.single("../public/images", 12), function (req, res) {
+app.post("/api", upload.single("./client/public/images", 12), function (req, res) {
   const originalName = req.file.originalname;
   const newArr = originalName.split(".");
   const fileExt = newArr[newArr.length - 1];
   const origPath = req.file.path;
-  console.log('ORIGPATH', origPath);
   const newPath = origPath + "." + fileExt
-  console.log('NEWPATH', newPath);
+  console.log(newPath);
   res.cookie('imageUpload', req.file.filename + "." + fileExt, { maxAge: 180000 });
 
 
   fs.rename(origPath, newPath, (err) => {
     if (err) throw err;
     console.log('Rename complete!');
-
   });
 
   res.send(newPath)
