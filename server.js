@@ -86,8 +86,8 @@ const multiparty = require('multiparty');
 
 // configure the keys for accessing AWS
 AWS.config.update({
-  accessKeyId: "AKIAIMELVADUYKLWJI3A",
-  secretAccessKey: "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"
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
 // configure AWS to work with promises
@@ -101,7 +101,7 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: "neighborly012",
+    Bucket: process.env.S3_BUCKET,
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
@@ -110,7 +110,7 @@ const uploadFile = (buffer, name, type) => {
 
 // Define POST route
 app.post('/test-upload', (request, response) => {
-  // console.log(process.env.AWS_SECRET_ACCESS_KEY)
+  console.log(process.env.AWS_SECRET_ACCESS_KEY)
   const form = new multiparty.Form();
     form.parse(request, async (error, fields, files) => {
       if (error) throw new Error(error);

@@ -9,7 +9,7 @@ function SeekerEventCard(props) {
           src={
             props.image === null
               ? "../assets/images/placeholder_event.jpg"
-              : "../images/" + props.image
+              : props.image
           }
           // src={"../images/" + props.image}
           alt="Card image"

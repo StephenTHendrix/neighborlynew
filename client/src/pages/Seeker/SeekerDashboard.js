@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import { getUsers } from "../../components/UserFunctions.js";
 // import API from "../../utils/API";
 // import axios from "axios";
@@ -51,7 +52,8 @@ class SeekerDashboard extends Component {
       time: "",
       ampm: "",
       first_name: "",
-      last_name: ""
+      last_name: "",
+      file: null
 
     };
 
@@ -117,9 +119,23 @@ class SeekerDashboard extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+    axios.post(`/test-upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(response => {
+      // handle your response;
+      console.log('RESPONSE:', response.data.Location)
+      this.setState({ image: response.data.Location })
+        const imgCookie = response.data.Location
+        console.log("Img cookie: " + imgCookie)
+    }).catch(error => {
+      // handle your error;
+      console.log('ERROR:', error)
+    });
 
-    this.setState({ image: document.cookie.split('=')[1] })
-    const imgCookie = document.cookie.split('=')[1]
 
     setTimeout(() => {
       const newEvent = {
@@ -314,7 +330,7 @@ class SeekerDashboard extends Component {
                     console.log("This is on update files")
                     // Set current file objects to this.state
                     this.setState({
-                      files: fileItems.map(fileItem => {
+                      file: fileItems.map(fileItem => {
                         return fileItem.file
                       }),
                     });
