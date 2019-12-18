@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from "react";
 import ReactDOM from "react-dom"
 import Register from "../../components/Register";
@@ -42,6 +43,7 @@ class VolunteerSignUp extends Component {
             files: [],
             token: {},
             decoded: {},
+            file: null
         }
         this.BACKSPACE = 8;
         this.DELETE_KEY = 46;
@@ -72,6 +74,10 @@ class VolunteerSignUp extends Component {
         console.log('FilePond instance has initialised', this.pond);
     }
 
+    // handleFileUpload = (event) => {
+    //     this.setState({file: event.target.files});
+    //   }
+
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
         if (e.target.name === "dob") {
@@ -86,10 +92,25 @@ class VolunteerSignUp extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault()
-        this.setState({ image: document.cookie.split('=')[1] })
-        const imgCookie = document.cookie.split('=')[1]
+
+        e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+    axios.post(`/test-upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(response => {
+      // handle your response;
+      console.log('RESPONSE:', response.data.Location)
+      this.setState({ image: response.data.Location })
+        const imgCookie = response.data.Location
         console.log("Img cookie: " + imgCookie)
+    }).catch(error => {
+      // handle your error;
+      console.log('ERROR:', error)
+    });
+
 
         setTimeout(() => {
             console.log(this.state.image)
@@ -318,11 +339,13 @@ class VolunteerSignUp extends Component {
                                     console.log("This is on update files")
                                     // Set current file objects to this.state
                                     this.setState({
-                                        files: fileItems.map(fileItem => {
+                                        file: fileItems.map(fileItem => {
                                             return fileItem.file
                                         }),
                                     });
-                                }}>
+                                }
+                                
+                                }>
                             </FilePond>
 
                             <button

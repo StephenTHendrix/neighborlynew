@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import FileUpload from "./components/FileUpload";
 // import Profile from './components/unusedVolunteerProfile'
 // Import Pages ===============================================================================================
 import Landing from "./pages/Landing";
@@ -24,6 +25,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
+          <FileUpload />
 
           <div>
             <div>
